@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Thermostat, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Associations" do
+    it { should have_many :readings }
+  end
 end
