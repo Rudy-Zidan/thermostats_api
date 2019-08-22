@@ -39,7 +39,7 @@ module ThermostatsApi
                        fixtures: true,
                        helper_specs: false,
                        request_specs: true
-      g.fixture_replacement :factory_bot_rails, dir: 'spec/factories'
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
   end
 end
