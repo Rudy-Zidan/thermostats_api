@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RedisManager do
   include_context 'redis context'
+  let(:redis_manager) { described_class.new }
 
   describe '.next_tracking_number_for_key' do
     let(:thermostat) { FactoryBot.create(:thermostat) }

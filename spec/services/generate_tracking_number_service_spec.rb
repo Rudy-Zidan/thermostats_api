@@ -8,7 +8,7 @@ RSpec.describe GenerateTrackingNumberService do
 
     context 'Generate tracking number for first time' do
       it 'Should get tracking number equal to 1' do
-        tracking_number = GenerateTrackingNumberService.run(thermostat.household_token)
+        tracking_number = described_class.run(thermostat.household_token)
 
         expect(tracking_number).to eq 1
       end
@@ -16,11 +16,11 @@ RSpec.describe GenerateTrackingNumberService do
 
     context 'Generate tracking number for second time' do
       before do
-        GenerateTrackingNumberService.run(thermostat.household_token)
+        described_class.run(thermostat.household_token)
       end
 
       it 'Should get tracking number equal to 2' do
-        tracking_number = GenerateTrackingNumberService.run(thermostat.household_token)
+        tracking_number = described_class.run(thermostat.household_token)
 
         expect(tracking_number).to eq 2
       end
