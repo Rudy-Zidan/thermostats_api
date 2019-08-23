@@ -44,5 +44,7 @@ module ThermostatsApi
 
     config.redis = config_for(:redis)
     config.sidekiq_web = config_for(:sidekiq_web)
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
