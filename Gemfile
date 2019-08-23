@@ -39,6 +39,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 3.8'
   gem 'shoulda'
+  gem 'rspec-sidekiq'
 end
 
 group :development do
