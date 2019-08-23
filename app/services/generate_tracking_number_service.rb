@@ -1,9 +1,9 @@
-class GenerateTrackingNumberService < BaseService
-  attr_reader :household_token, :redis_manager
+class GenerateTrackingNumberService < ApplicationService
+  attr_reader :household_token
 
   def initialize(household_token)
+    super()
     @household_token = household_token
-    @redis_manager = RedisManager.new
   end
 
   def run
