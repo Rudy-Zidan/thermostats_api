@@ -1,6 +1,4 @@
-RSpec.shared_context 'redis context', :shared_context do
-  let(:redis_manager) { RedisManager.new }
-  
+RSpec.shared_context 'redis context', :shared_context do  
   after(:all) do
     Redis.current.flushall
   end
