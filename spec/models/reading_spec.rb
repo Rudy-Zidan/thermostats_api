@@ -15,9 +15,9 @@ RSpec.describe Reading, type: :model do
 
     describe 'Numericality' do
       it { should validate_numericality_of(:tracking_number).is_greater_than(0).only_integer }
-      it { should validate_numericality_of(:temperature).is_greater_than(0) }
-      it { should validate_numericality_of(:humidity).is_greater_than(0) }
-      it { should validate_numericality_of(:battery_charge).is_greater_than(0) }
+      it { should validate_numericality_of(:temperature) }
+      it { should validate_numericality_of(:humidity) }
+      it { should validate_numericality_of(:battery_charge) }
     end
   end
 end
