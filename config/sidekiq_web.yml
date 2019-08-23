@@ -1,0 +1,10 @@
+default: &default
+  username: admin
+  password: admin
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  username: <%= ENV['SIDEKIQ_WEB_USERNAME'] %>
+  password: <%= ENV['SIDEKIQ_WEB_PASSWORD'] %>

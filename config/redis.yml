@@ -1,0 +1,10 @@
+default: &default
+  url: redis://localhost:6379
+  sidekiq_db: 1
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  url: <%= ENV['REDIS_URL'] %>
+  sidekiq_db: <%= ENV['REDIS_SIDEKIQ_DB'] %>

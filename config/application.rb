@@ -41,5 +41,8 @@ module ThermostatsApi
                        request_specs: true
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
+
+    config.redis = config_for(:redis)
+    config.sidekiq_web = config_for(:sidekiq_web)
   end
 end
