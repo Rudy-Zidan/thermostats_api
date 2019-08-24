@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'sidekiq'
 # To get more status about sidekiq
 gem 'sidekiq-status'
+# To change the number of jobs per queue
+gem 'sidekiq-limit_fetch'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,6 +41,9 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 3.8'
   gem 'shoulda'
+end
+
+group :test do
   gem 'rspec-sidekiq'
 end
 

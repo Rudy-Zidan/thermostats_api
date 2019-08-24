@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+(1..100).each do |i|
+  Thermostat.create(
+    household_token: SecureRandom.hex(15),
+    location: Faker::Address.street_address
+  )
+end

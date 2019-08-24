@@ -3,6 +3,8 @@ require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
 RSpec.describe CreateReadingWorker, type: :worker do
+  include_context 'redis context'
+
   describe '.perform_async' do
     context 'queue' do
       it "job in correct queue" do
@@ -31,11 +33,25 @@ RSpec.describe CreateReadingWorker, type: :worker do
         battery_charge: 50.0
       }
     end
+    let(:reading) { FactoryBot.build(:reading, reading_params)}
+    let(:redis_manager) { RedisManager.new }
 
     it 'should create a reading into DB' do
       expect do
         described_class.new.perform(reading_params)
       end.to change(thermostat.readings, :count).by(1)
+    end
+
+    it 'should create a reading into DB and remove cached reading' do
+      redis_manager.save_reading(reading)
+
+      expect do
+        described_class.new.perform(reading_params)
+      end.to change(thermostat.readings, :count).by(1)
+
+      saved_reading = redis_manager.saved_reading(reading.thermostat_id, reading.tracking_number)
+
+      expect(saved_reading).to be_nil
     end
   end
 end
