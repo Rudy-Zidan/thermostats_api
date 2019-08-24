@@ -1,24 +1,11 @@
-# README
+# Requirements
+- This project use sqlite.
+- Create gemset first using: ```rvm gemset use 2.6.3@thermostats_api --create```
+- Redis server runs at port 6379
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Setup and Run
+- Start install gems using: ```bundle install```
+- Run: ```rails db:setup```
+- Start server: ```rails s```
+- Start Sidekiq to process jobs using the following command: ```sidekiq```
+- To run tests type: ```bundle exec rspec```
