@@ -1,0 +1,735 @@
+{
+	"info": {
+		"_postman_id": "e9109f5f-5f8b-4a8e-ac9f-8c837c3c8ad5",
+		"name": "Thermostat api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Reading",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"temperature\": 3.54,\n\t\"humidity\": 33.68,\n\t\"battery_charge\": 33.8\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/reading",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"reading"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": " e9ce175b4711560d3519efe2759709",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/reading",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reading"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "d127fcb4-2566-4d79-9d23-dd39678c65f4"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.004177"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Unauthorized\",\n    \"message\": \"Invalid Token\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": " e9ce175b4711560d3519efe2759709",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"temperature\": 25.6,\n\t\"humidity\": 13.56,\n\t\"battery_charge\": 60.6\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/reading",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reading"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9ce4d84e8915fa43ac61b7e5e7fce80e\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "992ae826-d75e-4bd4-9175-dbc589196fe0"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.006475"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tracking_number\": 4,\n    \"temperature\": 25.6,\n    \"humidity\": 13.56,\n    \"battery_charge\": 60.6\n}"
+				},
+				{
+					"name": "Validation Errors",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": " e9ce175b4711560d3519efe2759709",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/reading",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reading"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "0ba688e5-1ca9-4b34-b6ab-fddac788ff21"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.073627"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"invalid params\",\n    \"errors\": [\n        {\n            \"field\": \"temperature\",\n            \"message\": \"can't be blank\"\n        },\n        {\n            \"field\": \"temperature\",\n            \"message\": \"is not a number\"\n        },\n        {\n            \"field\": \"humidity\",\n            \"message\": \"can't be blank\"\n        },\n        {\n            \"field\": \"humidity\",\n            \"message\": \"is not a number\"\n        },\n        {\n            \"field\": \"battery_charge\",\n            \"message\": \"can't be blank\"\n        },\n        {\n            \"field\": \"battery_charge\",\n            \"message\": \"is not a number\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Reading By Tracking Number",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/reading/1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"reading",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource Not Found Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/reading/ahf",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reading",
+								"ahf"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "9a037d0c-dbf3-4f13-9fa4-07b68573dbdd"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.010641"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"resource not found\",\n    \"message\": \"Couldn't find Reading\"\n}"
+				},
+				{
+					"name": "Unauthrorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/reading/ahf",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reading",
+								"ahf"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "f3b7ad24-62bf-4f35-bc33-0581faf6c33b"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.002655"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Unauthorized\",\n    \"message\": \"Invalid Token\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/reading/11",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reading",
+								"11"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"70be4454130459cac418bbee15fc6250\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "9feecdd0-ca78-4fb5-90d1-dc28ede8839f"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.005366"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tracking_number\": 11,\n    \"temperature\": 25.6,\n    \"humidity\": 13.56,\n    \"battery_charge\": 60.6\n}"
+				}
+			]
+		},
+		{
+			"name": "Thermostat Stats",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{host}}/stats",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/stats",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "9d2756a2-1e2d-4360-9590-6c595f3abf1f"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.003055"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Unauthorized\",\n    \"message\": \"Invalid Token\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/stats",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e893d5a50951659a8fddf8d91223d1f9\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "9664dd67-be47-47f0-b7b1-f46f0836cf56"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.003709"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"temperature\": {\n        \"min\": 25.6,\n        \"max\": 123.54,\n        \"avg\": 35.394\n    },\n    \"humidity\": {\n        \"min\": 13.56,\n        \"max\": 43.68,\n        \"avg\": 16.572\n    },\n    \"battery_charge\": {\n        \"min\": 23.8,\n        \"max\": 60.6,\n        \"avg\": 56.92\n    }\n}"
+				}
+			]
+		}
+	]
+}
