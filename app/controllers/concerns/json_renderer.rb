@@ -1,7 +1,8 @@
 module JsonRenderer
   def render(*args)
     options = args.extract_options!
-    options = handle_json(options) if options[:json].is_a?(ApplicationRecord)
+    options = handle_json(options) if options[:json].is_a?(ApplicationRecord) ||
+                                      options[:json].is_a?(ThermostatStatistic)
 
     super(*(args << options))
   end

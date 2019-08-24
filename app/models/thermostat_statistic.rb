@@ -1,4 +1,5 @@
 class ThermostatStatistic
+  attr_reader :errors
   attr_accessor :temperature, :humidity, :battery_charge, :count_of_readings
 
   def initialize
@@ -13,5 +14,6 @@ class ThermostatStatistic
     @humidity = default.dup
     @battery_charge = default.dup
     @count_of_readings = 0
+    @errors = []
   end
 end
