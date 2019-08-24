@@ -30,6 +30,23 @@ RSpec.describe CreateReadingService do
         end.to change(CreateReadingWorker.jobs, :size).by(1)
       end
 
+      it 'Should calculate thermostat_stats' do
+        reading = described_class.run(thermostat: thermostat, params: params)
+        saved_thermostat_statistic = GetThermostatStatsService.run(thermostat)
+
+        expect(saved_thermostat_statistic.temperature[:min]).to eq reading.temperature
+        expect(saved_thermostat_statistic.temperature[:max]).to eq reading.temperature
+        expect(saved_thermostat_statistic.temperature[:avg]).to eq reading.temperature
+
+        expect(saved_thermostat_statistic.humidity[:min]).to eq reading.humidity
+        expect(saved_thermostat_statistic.humidity[:max]).to eq reading.humidity
+        expect(saved_thermostat_statistic.humidity[:avg]).to eq reading.humidity
+
+        expect(saved_thermostat_statistic.battery_charge[:min]).to eq reading.battery_charge
+        expect(saved_thermostat_statistic.battery_charge[:max]).to eq reading.battery_charge
+        expect(saved_thermostat_statistic.battery_charge[:avg]).to eq reading.battery_charge
+      end
+
       it 'Should save reading into redis' do
         reading = described_class.run(thermostat: thermostat, params: params)
         redis_manager = RedisManager.new
@@ -51,6 +68,15 @@ RSpec.describe CreateReadingService do
           humidity: 'wrong value',
           temperature: 'wrong value',
           battery_charge: 'wrong value'
+        }
+      end
+
+      let(:default_data) do
+        {
+          min: nil,
+          max: nil,
+          avg: nil,
+          accumulative_value: 0
         }
       end
 
@@ -80,6 +106,15 @@ RSpec.describe CreateReadingService do
         )
 
         expect(saved_reading).to be_nil
+      end
+
+      it 'Should get default thermostat_stats' do
+        reading = described_class.run(thermostat: thermostat, params: params)
+        saved_thermostat_statistic = GetThermostatStatsService.run(thermostat)
+
+        expect(saved_thermostat_statistic.temperature).to eq default_data
+        expect(saved_thermostat_statistic.humidity).to eq default_data
+        expect(saved_thermostat_statistic.battery_charge).to eq default_data
       end
     end
   end

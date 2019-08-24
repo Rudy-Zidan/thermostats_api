@@ -13,6 +13,7 @@ class CreateReadingService < ApplicationService
     return reading unless reading.valid?
 
     CreateReadingWorker.perform_async(params)
+    recalculate_thermostat_stats(reading)
     cache_reading(reading)
     reading
   end
@@ -34,5 +35,9 @@ class CreateReadingService < ApplicationService
 
   def cache_reading(reading)
     redis_manager.save_reading(reading)
+  end
+
+  def recalculate_thermostat_stats(reading)
+    ThermostatStatsCalculatorService.run(thermostat: thermostat, reading: reading)
   end
 end
