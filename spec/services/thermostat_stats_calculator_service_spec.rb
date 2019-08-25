@@ -59,5 +59,25 @@ RSpec.describe ThermostatStatsCalculatorService do
         expect(new_thermostat_statistic.count_of_readings).to eq 2
       end
     end
+
+    context 'Calculate Stats for many times' do
+      let(:thermostat) { FactoryBot.create(:thermostat) }
+      let(:reading) { FactoryBot.create(:reading, thermostat: thermostat) }
+      it 'Should get corret readings counts' do
+        last_stats = nil
+        total_readings = 500
+        threads = total_readings.times.map do |i|
+          Thread.new do
+            last_stats = described_class.run(thermostat: thermostat, reading: reading)
+          end
+        end
+        threads.each(&:join)
+
+        expect(last_stats.count_of_readings).to eq total_readings
+        expect(last_stats.temperature[:accumulative_value].round(2)).to eq (total_readings * reading.temperature).round(2)
+        expect(last_stats.humidity[:accumulative_value].round(2)).to eq (total_readings * reading.humidity).round(2)
+        expect(last_stats.battery_charge[:accumulative_value].round(2)).to eq (total_readings * reading.battery_charge).round(2)
+      end
+    end
   end
 end

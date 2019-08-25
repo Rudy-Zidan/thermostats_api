@@ -7,6 +7,8 @@ class GenerateTrackingNumberService < ApplicationService
   end
 
   def run
-    redis_manager.next_tracking_number_for(household_token)
+    redis_manager.lock("tracking_number_lock_#{household_token}") do
+      redis_manager.next_tracking_number_for(household_token)
+    end
   end
 end

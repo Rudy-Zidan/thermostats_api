@@ -3,6 +3,12 @@ class RedisManager
     @redis = Redis.current
   end
 
+  def lock(key, &block)
+    @redis.lock(key, life: 120, acquire: 2) do |lock|
+      block.call
+    end
+  end
+
   def next_tracking_number_for(string)
     key = "tracking_number_#{string}"
     tracking_number = @redis.get(key).to_i + 1

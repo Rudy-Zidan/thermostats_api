@@ -24,6 +24,20 @@ RSpec.describe CreateReadingService do
         expect(reading.errors.empty?).to be_truthy
       end
 
+      it 'Should create with different tracking_number' do
+        result = []
+        total_readings = 500
+        threads = total_readings.times.map do |i|
+          Thread.new do
+            result << described_class.run(thermostat: thermostat, params: params)
+          end
+        end
+        threads.each(&:join)
+        tracking_numbers = (1..total_readings).to_a
+
+        expect(result.pluck(:tracking_number).sort).to eq tracking_numbers
+      end
+
       it 'Should trigger CreateReadingWorker' do
         expect do
           described_class.run(thermostat: thermostat, params: params)

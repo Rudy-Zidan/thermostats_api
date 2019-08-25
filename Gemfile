@@ -33,6 +33,8 @@ gem 'sidekiq-status'
 # To change the number of jobs per queue
 gem 'sidekiq-limit_fetch'
 
+gem 'mlanett-redis-lock', require: 'redis-lock'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

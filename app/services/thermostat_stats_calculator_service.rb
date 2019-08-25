@@ -9,9 +9,11 @@ class ThermostatStatsCalculatorService < ApplicationService
   end
 
   def run
-    calculate_statistics
-    save_thermostat_statistic_on_redis
-    thermostat_statistic
+    redis_manager.lock("thermostat_stats_lock_#{thermostat.household_token}") do
+      calculate_statistics
+      save_thermostat_statistic_on_redis
+      thermostat_statistic
+    end
   end
 
   private
